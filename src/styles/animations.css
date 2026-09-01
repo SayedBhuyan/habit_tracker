@@ -1,0 +1,53 @@
+/* Micro-animations and Transitions */
+
+@keyframes pulse-flame {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15) rotate(3deg);
+    filter: drop-shadow(0 0 6px rgba(249, 115, 22, 0.6));
+  }
+}
+
+@keyframes check-pop {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.view-transition-enter {
+  animation: fade-in-scale 0.25s var(--ease-smooth);
+}
+
+.list-item-enter {
+  animation: slide-down 0.2s var(--ease-smooth);
+}
