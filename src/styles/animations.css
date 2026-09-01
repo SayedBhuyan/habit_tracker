@@ -45,9 +45,9 @@
 }
 
 .view-transition-enter {
-  animation: fade-in-scale 0.25s var(--ease-smooth);
+  animation: none;
 }
 
 .list-item-enter {
-  animation: slide-down 0.2s var(--ease-smooth);
+  animation: none;
 }

@@ -87,6 +87,16 @@ export function renderSettingsView(container) {
             <option value="light" ${prefs.theme === 'light' ? 'selected' : ''}>Light Mode</option>
           </select>
         </div>
+
+        <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+          <label style="display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
+            <div>
+              <div style="font-weight: 600; font-size: 0.95rem;">Show Progress Banner</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">Display the daily progress summary on the Today view</div>
+            </div>
+            <input type="checkbox" id="progressBannerToggle" ${prefs.progressBannerEnabled !== false ? 'checked' : ''} style="width: 1.25rem; height: 1.25rem; accent-color: var(--accent-primary);" />
+          </label>
+        </div>
       </section>
 
       <!-- Sound & Haptics -->
@@ -180,6 +190,13 @@ export function renderSettingsView(container) {
   container.querySelector('#themeSelect').addEventListener('change', (e) => {
     store.updatePreferences({ theme: e.target.value });
     toast.show({ message: `Theme changed to ${e.target.value}`, type: 'info' });
+  });
+
+  // Progress Banner Toggle
+  const progressBannerToggle = container.querySelector('#progressBannerToggle');
+
+  progressBannerToggle?.addEventListener('change', (e) => {
+    store.updatePreferences({ progressBannerEnabled: e.target.checked });
   });
 
   // Sound Toggles

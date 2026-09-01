@@ -7,7 +7,6 @@ import { getIcon } from '../utils/icons.js';
 
 export function renderNavigation(container) {
   const currentView = store.currentView;
-  const currentTheme = store.preferences.theme;
 
   const items = [
     { id: 'today', label: 'Today', icon: 'check-circle-2' },
@@ -37,12 +36,6 @@ export function renderNavigation(container) {
           <span>${item.label}</span>
         </button>
       `).join('')}
-
-      <div class="nav-footer">
-        <button class="btn btn-ghost btn-icon" id="quickThemeBtn" title="Toggle Theme" type="button" aria-label="Toggle Theme">
-          ${getIcon(currentTheme === 'dark' ? 'sun' : 'moon')}
-        </button>
-      </div>
     </nav>
   `;
 
@@ -53,12 +46,4 @@ export function renderNavigation(container) {
       store.setView(view);
     });
   });
-
-  const themeBtn = container.querySelector('#quickThemeBtn');
-  if (themeBtn) {
-    themeBtn.addEventListener('click', () => {
-      const nextTheme = store.preferences.theme === 'dark' ? 'light' : 'dark';
-      store.updatePreferences({ theme: nextTheme });
-    });
-  }
 }

@@ -69,9 +69,15 @@ export function renderHistoryView(container) {
               const isToday = dateStr === todayStr;
               const dateNum = parseDateString(dateStr).getDate();
               const p = getDailyProgress(store.habits, store.completions, dateStr);
+              const dailyNotes = store.habits.some(habit => {
+                const key = `${habit.id}_${dateStr}`;
+                return !!store.completions[key]?.note;
+              });
 
               let dotColor = 'transparent';
-              if (p.total > 0) {
+              if (dailyNotes) {
+                dotColor = '#f59e0b';
+              } else if (p.total > 0) {
                 if (p.percentage === 100) dotColor = '#10b981';
                 else if (p.percentage > 0) dotColor = 'var(--accent-primary)';
                 else dotColor = 'var(--border-medium)';

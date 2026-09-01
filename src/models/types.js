@@ -53,5 +53,6 @@ export const DEFAULT_PREFERENCES = {
   hapticsEnabled: true,
   firstDayOfWeek: 1, // 1 = Monday, 0 = Sunday
   celebrationsEnabled: true,
+  progressBannerEnabled: true,
   createdAt: new Date().toISOString()
 };

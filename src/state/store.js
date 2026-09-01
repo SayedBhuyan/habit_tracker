@@ -313,6 +313,7 @@ class HabitStore {
     const isCompleted = value >= targetVal;
 
     this.completions[key] = {
+      ...this.completions[key],
       id: key,
       habitId,
       date: dateStr,
@@ -326,6 +327,26 @@ class HabitStore {
       sound.playPop(true);
     }
     this.notify('completion_value_changed');
+  }
+
+  setHabitNote(habitId, dateStr, note) {
+    const key = `${habitId}_${dateStr}`;
+    const trimmed = typeof note === 'string' ? note.trim() : '';
+
+    this.completions[key] = {
+      ...(this.completions[key] || {}),
+      id: key,
+      habitId,
+      date: dateStr,
+      completed: this.completions[key]?.completed || false,
+      value: this.completions[key]?.value ?? 0,
+      completedAt: this.completions[key]?.completedAt || null,
+      note: trimmed
+    };
+
+    saveCompletions(this.completions);
+    this.notify('habit_note_updated');
+    return trimmed;
   }
 
   // --- Preferences & Theme ---
