@@ -97,34 +97,6 @@ export function renderDayView(container) {
         </div>
       </section>
 
-      <div class="section-header">
-        <h3 class="section-title">Today's Habits</h3>
-      </div>
-
-      ${isBannerVisible ? `
-        <section class="progress-banner" aria-label="Daily Progress" style="margin-top: 0.5rem; margin-bottom: 1rem;">
-          <div class="progress-banner-info">
-            <h2 class="progress-banner-title">${motivational.title}</h2>
-            <p class="progress-banner-sub">${motivational.subtitle}</p>
-          </div>
-
-          <div class="progress-ring-wrap">
-            <svg class="progress-ring-svg" viewBox="0 0 84 84">
-              <circle class="progress-ring-bg" cx="42" cy="42" r="${radius}" />
-              <circle 
-                class="progress-ring-fill" 
-                cx="42" 
-                cy="42" 
-                r="${radius}" 
-                stroke-dasharray="${circumference}" 
-                stroke-dashoffset="${strokeOffset}" 
-              />
-            </svg>
-            <div class="progress-ring-text">${progress.percentage}%</div>
-          </div>
-        </section>
-      ` : ''}
-
       <!-- Habits List or Empty State -->
       <div class="habits-list" id="habitsListContainer"></div>
     </div>
